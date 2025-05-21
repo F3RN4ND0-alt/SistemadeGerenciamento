@@ -1,2 +1,2 @@
 # SistemadeGerenciamento
-Sistema de Gerenciamento de Alunos 
+Sistema de Gerenciamento Academico 
