@@ -65,5 +65,4 @@ public class Disciplina {
 			str += this.getProfessor().toString() + "\n";
 			return str;
 		}
-		
 }

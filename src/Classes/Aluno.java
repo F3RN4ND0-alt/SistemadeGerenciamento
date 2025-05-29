@@ -12,9 +12,9 @@ public class Aluno extends Usuario {
     public Aluno() {}
 
     public Aluno(Integer idUsuario, String nomeUsuario, String senha, String cpf, Sexo sexo,
-                 Calendar dataNascimento, String email, Telefone telefone,
+                 Calendar dataNascimento, String email, Telefone telefone,Endereco endereco,
                  Boolean ativo, Permissao permissao) {
-        super(idUsuario, nomeUsuario, senha, cpf, sexo, dataNascimento, email, telefone, ativo, permissao);
+        super(idUsuario, nomeUsuario, senha, cpf, sexo, dataNascimento, email, telefone,endereco, ativo, permissao);
     }
 
     public void matricularCurso(Curso curso) {

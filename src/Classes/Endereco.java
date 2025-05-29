@@ -1,89 +1,89 @@
 package Classes;
 
 public class Endereco {
-	private String Endereco;
-	private String Cep;
-	private String Numero;
-	private String Complemento;
-	private String Bairro;
-	private String Cidade;
-	private String Estado;
-	private String Pais;
+	private String endereco;
+	private String cep;
+	private String numero;
+	private String complemento;
+	private String bairro;
+	private String cidade;
+	private String estado;
+	private String pais;
 	
-		public Endereco(String Endereco, String Cep, String Numero, String Complemento, String Bairro, String Cidade, String Estado, String Pais) {
-			this.Endereco = Endereco;
-			this.Cep = Cep;
-			this.Numero = Numero;
-			this.Complemento = Complemento;
-			this.Bairro = Bairro;
-			this.Cidade = Cidade;
-			this.Estado = Estado;
-			this.Pais = Pais;
+		public Endereco(String Endereco, String Cep, String Numero,String Complemento,String Bairro, String Cidade, String Estado,String Pais) {
+			this.endereco = Endereco;
+			this.numero = Numero;
+			this.cep = Cep;
+			this.bairro = Bairro;
+			this.complemento = Complemento;
+			this.cidade = Cidade;
+			this.estado = Estado;
+			this.pais = Pais;
 			
 		}
-	
+
 	public String getEndereco() {
-		return Endereco;
+		return endereco;
 	}
 	
 	public void setEndereco(String Endereco) {
-		this.Endereco = Endereco;
+		this.endereco = Endereco;
 	}
 
 	public String getCep() {
-		return Cep;
+		return cep;
 	}
 
 	public void setCep(String cep) {
-		Cep = cep;
+		this.cep = cep;
 	}
 
 	public String getNumero() {
-		return Numero;
+		return numero;
 	}
 
 	public void setNumero(String numero) {
-		Numero = numero;
+		this.numero = numero;
 	}
 
 	public String getComplemento() {
-		return Complemento;
+		return complemento;
 	}
 
 	public void setComplemento(String complemento) {
-		Complemento = complemento;
+		this.complemento = complemento;
 	}
 
 	public String getBairro() {
-		return Bairro;
+		return bairro;
 	}
 
 	public void setBairro(String bairro) {
-		Bairro = bairro;
+		this.bairro = bairro;
 	}
 
 	public String getCidade() {
-		return Cidade;
+		return cidade;
 	}
 
 	public void setCidade(String cidade) {
-		Cidade = cidade;
+		this.cidade = cidade;
 	}
 
 	public String getEstado() {
-		return Estado;
+		return estado;
 	}
 
 	public void setEstado(String estado) {
-		Estado = estado;
+		this.estado = estado;
 	}
 
 	public String getPais() {
-		return Pais;
+		return pais;
 	}
 
 	public void setPais(String pais) {
-		Pais = pais;
+		this.pais = pais;
 	}
 	
 	public String toString() {
@@ -95,7 +95,7 @@ public class Endereco {
 		str += "Bairro: " + this.getBairro() + "\n";
 		str += "Cidade: " + this.getCidade() + "\n";
 		str += "Estado: " + this.getEstado() + "\n";
-		str += "Pais: " + this.getPais();
+		str += "Pais: " + this.getPais() + "\n";
 		return str;
 	}
 

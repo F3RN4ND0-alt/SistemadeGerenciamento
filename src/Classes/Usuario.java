@@ -4,17 +4,18 @@ import Enums.Permissao;
 import Enums.Sexo;
 import java.util.Calendar;
 
-public abstract class Usuario {
+public abstract  class  Usuario {
     protected Integer idUsuario;
     protected String nomeUsuario;
     protected String senha;
     protected String cpf;
     protected Sexo sexo;
     protected Calendar dataNascimento;
-    private String email;
-    private Telefone telefone;
-    private Boolean ativo;
-    private Permissao permissao;
+    protected String email;
+    protected Telefone telefone;
+    protected Endereco endereco;
+    protected Boolean ativo;
+    protected Permissao permissao;
 
     
     public Usuario() {
@@ -22,7 +23,7 @@ public abstract class Usuario {
 
  
     public Usuario(Integer idUsuario, String nomeUsuario, String senha, String cpf, Sexo sexo,
-                   Calendar dataNascimento, String email, Telefone telefone,
+                   Calendar dataNascimento, String email, Telefone telefone,Endereco endereco,
                    Boolean ativo, Permissao permissao) {
         this.idUsuario = idUsuario;
         this.nomeUsuario = nomeUsuario;
@@ -32,6 +33,7 @@ public abstract class Usuario {
         this.dataNascimento = dataNascimento;
         this.email = email;
         this.telefone = telefone;
+        this.endereco = endereco;
         this.ativo = ativo;
         this.permissao = permissao;
     }
@@ -100,7 +102,12 @@ public abstract class Usuario {
     public void setTelefone(Telefone telefone) {
         this.telefone = telefone;
     }
-
+    public Endereco getEndereco() {
+    	return endereco;
+    }
+    public void setEndereco(Endereco endereco) {
+    	this.endereco = endereco;
+    }
     public Boolean getAtivo() {
         return ativo;
     }
@@ -155,6 +162,7 @@ public abstract class Usuario {
         str += "DataNascimento: " + this.getDataNascimento() + "\r\n";
         str += "Email: " + this.getEmail() + "\r\n";
         str += "Telefone: " + this.getTelefone() + "\r\n";
+        str += "Endereco:"	+ this.getEndereco() + "\r\n";
         str += "Ativo: " + this.getAtivo() + "\r\n";
         str += "Permissao: " + this.getPermissao() + "\r\n";
         return str;
