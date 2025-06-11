@@ -6,15 +6,17 @@ import Enums.ModalidadeCurso;
 import Enums.NivelCurso;
 
 public class Curso {
-    private int Id;
+    private int IdCurso;
     private String Nome;
     private String DescricaoCurso;
     private NivelCurso Nivel;
     private ModalidadeCurso Modalidade;
     private List<Disciplina> Disciplinas;
-
-    public Curso(int Id, String Nome, String DescricaoCurso, NivelCurso Nivel, ModalidadeCurso Modalidade, List<Disciplina> Disciplinas) {
-        this.Id = Id;
+    public Curso() {
+    	
+    	}
+    public Curso(int IdCurso, String Nome, String DescricaoCurso, NivelCurso Nivel, ModalidadeCurso Modalidade, List<Disciplina> Disciplinas) {
+        this.IdCurso = IdCurso;
         this.Nome = Nome;
         this.DescricaoCurso = DescricaoCurso;
         this.Nivel = Nivel;
@@ -22,12 +24,13 @@ public class Curso {
         this.Disciplinas = Disciplinas;
     }
 
-    public int getId() {
-        return Id;
+
+	public int getIdCurso() {
+        return IdCurso;
     }
 
-    public void setId(int Id) {
-        this.Id = Id;
+    public void setIdCurso(int IdCurso) {
+        this.IdCurso = IdCurso;
     }
 
     public String getNome() {
@@ -80,7 +83,7 @@ public class Curso {
     
     	public String toString() {
     			String str = "";
-    			str += "Id:" + this.getId() + "\r\n";
+    			str += "IdCurso:" + this.getIdCurso() + "\r\n";
     			str += "Nome:" + this.getNome() + "\r\n";
     			str += "DescricaoCurso:" + this.getDescricaoCurso() + "\r\n";
     			str += "Nivel:" + this.getNivel() + "\r\n";

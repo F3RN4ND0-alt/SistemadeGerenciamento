@@ -1,151 +1,129 @@
 package View;
 
-import java.awt.BorderLayout;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
 
 public class TelaPrincipal extends JFrame {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaPrincipal frame = new TelaPrincipal();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	public class Conexao {
+	    private static final String URL = "jdbc:mysql://localhost:3306/sistemagerenciamento";
+	    private static final String USUARIO = "root";
+	    private static final String SENHA = "123456";
 
-    // Paleta de cores
-    private final Color corFundo = new Color(20, 20, 20);
-    private final Color corPainelMenu = new Color(40, 40, 40);
-    private final Color corBotao = new Color(40, 150, 255);
-    private final Color corBotaoHover = new Color(70, 180, 255);
-    private final Color corTexto = new Color(230, 230, 230);
+	    public static Connection getConexao(){
+	    	try {
+	            return DriverManager.getConnection(URL, USUARIO, SENHA);
+	        } catch (SQLException e) {
+	            System.out.println("Erro na conexão com o banco de dados:");
+	            e.printStackTrace();
+	            return null;
+	        }
+	    }
+	}
+	
+	public TelaPrincipal() {
+		
+		setBackground(new Color(107, 107, 107));
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 800, 600);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(240, 240, 240));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-    // Fontes
-    private final Font fonteTitulo = new Font("Segoe UI", Font.BOLD, 26);
-    private final Font fonteMenu = new Font("Segoe UI", Font.PLAIN, 16);
-
-    // Painel central
-    private JLabel labelPainelCentral;
-
-    public TelaPrincipal() {
-        setTitle("Sistema de Gerenciamento Acadêmico");
-        setSize(900, 600);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
-        getContentPane().setBackground(corFundo);
-
-        // Painel lateral (menu)
-        JPanel painelMenu = new JPanel();
-        painelMenu.setBackground(corPainelMenu);
-        painelMenu.setLayout(new GridBagLayout());
-        painelMenu.setPreferredSize(new Dimension(250, getHeight()));
-
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(15, 15, 15, 15);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-
-        JLabel tituloMenu = new JLabel("Menu Principal");
-        tituloMenu.setFont(fonteTitulo);
-        tituloMenu.setForeground(corBotao);
-        gbc.gridy = 0;
-        painelMenu.add(tituloMenu, gbc);
-
-        // Botões de menu
-        JButton btnAlunos = criarBotaoMenu("Cadastro de Alunos", "");
-        JButton btnProfessores = criarBotaoMenu("Cadastro de Professores", "");
-        JButton btnCursos = criarBotaoMenu("Cadastro de Cursos", "");
-        JButton btnSair = criarBotaoMenu("Sair", "");
-
-        // Ações dos botões
-        btnAlunos.addActionListener(e -> atualizarPainelCentral("Tela de Cadastro de Alunos"));
-        btnProfessores.addActionListener(e -> atualizarPainelCentral("Tela de Cadastro de Professores"));
-        btnCursos.addActionListener(e -> atualizarPainelCentral("Tela de Cadastro de Cursos"));
-        btnSair.addActionListener(e -> {
-            int confirm = JOptionPane.showConfirmDialog(this, "Deseja realmente sair?", "Confirmação", JOptionPane.YES_NO_OPTION);
-            if (confirm == JOptionPane.YES_OPTION) {
-                System.exit(0);
-            }
-        });
-
-        // Adicionando botões ao menu
-        gbc.gridy = 1;
-        painelMenu.add(btnAlunos, gbc);
-        gbc.gridy++;
-        painelMenu.add(btnProfessores, gbc);
-        gbc.gridy++;
-        painelMenu.add(btnCursos, gbc);
-        gbc.gridy++;
-        painelMenu.add(btnSair, gbc);
-
-        add(painelMenu, BorderLayout.WEST);
-
-        // Painel central de boas-vindas
-        labelPainelCentral = new JLabel("<html><div style='text-align: center;'>Bem-vindo ao Sistema Acadêmico<br>Selecione uma opção no menu</div></html>", SwingConstants.CENTER);
-        labelPainelCentral.setForeground(corBotao);
-        labelPainelCentral.setFont(new Font("Segoe UI", Font.BOLD, 24));
-
-        JPanel painelCentral = new JPanel(new BorderLayout());
-        painelCentral.setBackground(corFundo);
-        painelCentral.add(labelPainelCentral, BorderLayout.CENTER);
-
-        add(painelCentral, BorderLayout.CENTER);
-    }
-
-    private JButton criarBotaoMenu(String texto, String caminhoIcone) {
-        JButton botao = new JButton(texto);
-        botao.setFocusPainted(false);
-        botao.setBackground(corPainelMenu);
-        botao.setForeground(corTexto);
-        botao.setFont(fonteMenu);
-        botao.setHorizontalAlignment(SwingConstants.LEFT);
-        botao.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 10));
-
-        // Carregar ícone (se houver)
-        if (!caminhoIcone.isEmpty()) {
-            try {
-                ImageIcon icon = new ImageIcon(getClass().getResource(caminhoIcone));
-                Image img = icon.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
-                botao.setIcon(new ImageIcon(img));
-                botao.setIconTextGap(15);
-            } catch (Exception e) {
-                // ícone não encontrado, ignora
-            }
-        }
-
-        // Efeito hover
-        botao.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botao.setBackground(corBotaoHover);
-            }
-
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                botao.setBackground(corPainelMenu);
-            }
-        });
-
-        return botao;
-    }
-
-    private void atualizarPainelCentral(String texto) {
-        labelPainelCentral.setText("<html><div style='text-align: center;'>" + texto + "</div></html>");
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            TelaPrincipal tela = new TelaPrincipal();
-            tela.setVisible(true);
-        });
-    }
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.GRAY);
+		panel.setBounds(10, 11, 764, 539);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 764, 22);
+		panel.add(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("Login");
+		mnNewMenu.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Usuario");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Login().setVisible(true);
+				dispose();
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem);
+		
+		JMenu mnNewMenu_1 = new JMenu("Cursos");
+		mnNewMenu_1.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		menuBar.add(mnNewMenu_1);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Cursos");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new TelaCursos().setVisible(true);
+				dispose();
+			}
+		});
+		mnNewMenu_1.add(mntmNewMenuItem_2);
+		
+		JMenu mnNewMenu_2 = new JMenu("Cadastro");
+		mnNewMenu_2.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		menuBar.add(mnNewMenu_2);
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Usuarios");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new CadastroUsuario().setVisible(true);
+				dispose();
+			}
+		});
+		mnNewMenu_2.add(mntmNewMenuItem_3);
+		
+		JLabel lblNewLabel = new JLabel("Gerenciamento Academico");
+		lblNewLabel.setForeground(Color.BLACK);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel.setBounds(230, 33, 303, 63);
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Bem Vindo");
+		lblNewLabel_1.setForeground(Color.BLACK);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel_1.setBounds(322, 103, 120, 44);
+		panel.add(lblNewLabel_1);
+	}
 }

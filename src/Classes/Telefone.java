@@ -1,6 +1,7 @@
 package Classes;
 
 public class Telefone {
+	private int IdTelefone;
 	private String ddd;
 	private String telefone;
 	
@@ -8,10 +9,16 @@ public class Telefone {
 	}
 	
 	public Telefone(String ddd, String telefone) {
+		
 		this.setDdd( ddd );
 		this.setTelefone( telefone );
 	}
-	
+	public void setIdTelefone(int IdTelefone){
+		this.IdTelefone = IdTelefone;
+	}
+	public int getIdTelefone() {
+		return this.IdTelefone;
+	}
 	public void setDdd(String ddd) {
 		this.ddd = ddd;
 	}

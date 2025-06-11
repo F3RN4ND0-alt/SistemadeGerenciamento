@@ -1,102 +1,114 @@
 package Classes;
 
 public class Endereco {
-	private String Endereco;
-	private String Cep;
-	private String Numero;
-	private String Complemento;
-	private String Bairro;
-	private String Cidade;
-	private String Estado;
-	private String Pais;
-	
-		public Endereco(String Endereco, String Cep, String Numero, String Complemento, String Bairro, String Cidade, String Estado, String Pais) {
-			this.Endereco = Endereco;
-			this.Cep = Cep;
-			this.Numero = Numero;
-			this.Complemento = Complemento;
-			this.Bairro = Bairro;
-			this.Cidade = Cidade;
-			this.Estado = Estado;
-			this.Pais = Pais;
-			
-		}
-	
-	public String getEndereco() {
-		return Endereco;
-	}
-	
-	public void setEndereco(String Endereco) {
-		this.Endereco = Endereco;
-	}
+    private int idEndereco;
+    private String endereco;
+    private String cep;
+    private String numero;
+    private String complemento;
+    private String bairro;
+    private String cidade;
+    private String estado;
+    private String pais;
 
-	public String getCep() {
-		return Cep;
-	}
+    public Endereco() {
+    }
 
-	public void setCep(String cep) {
-		Cep = cep;
-	}
+    public Endereco(int idEndereco,String endereco, String cep, String numero, String complemento,
+                    String bairro, String cidade, String estado, String pais) {
+        this.idEndereco = idEndereco;
+    	this.endereco = endereco;
+        this.cep = cep;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.pais = pais;
+    }
 
-	public String getNumero() {
-		return Numero;
-	}
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
+    }
 
-	public void setNumero(String numero) {
-		Numero = numero;
-	}
+    public int getIdEndereco() {
+        return idEndereco;
+    }
 
-	public String getComplemento() {
-		return Complemento;
-	}
+    public String getEndereco() {
+        return endereco;
+    }
 
-	public void setComplemento(String complemento) {
-		Complemento = complemento;
-	}
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 
-	public String getBairro() {
-		return Bairro;
-	}
+    public String getCep() {
+        return cep;
+    }
 
-	public void setBairro(String bairro) {
-		Bairro = bairro;
-	}
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
 
-	public String getCidade() {
-		return Cidade;
-	}
+    public String getNumero() {
+        return numero;
+    }
 
-	public void setCidade(String cidade) {
-		Cidade = cidade;
-	}
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
 
-	public String getEstado() {
-		return Estado;
-	}
+    public String getComplemento() {
+        return complemento;
+    }
 
-	public void setEstado(String estado) {
-		Estado = estado;
-	}
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
 
-	public String getPais() {
-		return Pais;
-	}
+    public String getBairro() {
+        return bairro;
+    }
 
-	public void setPais(String pais) {
-		Pais = pais;
-	}
-	
-	public String toString() {
-		String str = "";
-		str += "Endereco: " + this.getEndereco() + "\n";
-		str += "Cep: " + this.getCep() + "\n";
-		str += "Numero: " + this.getNumero() + "\n";
-		str += "Complemento: " + this.getComplemento() + "\n";
-		str += "Bairro: " + this.getBairro() + "\n";
-		str += "Cidade: " + this.getCidade() + "\n";
-		str += "Estado: " + this.getEstado() + "\n";
-		str += "Pais: " + this.getPais();
-		return str;
-	}
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
 
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    @Override
+    public String toString() {
+        return "Endereco: " + endereco + "\n" +
+               "Cep: " + cep + "\n" +
+               "Numero: " + numero + "\n" +
+               "Complemento: " + complemento + "\n" +
+               "Bairro: " + bairro + "\n" +
+               "Cidade: " + cidade + "\n" +
+               "Estado: " + estado + "\n" +
+               "Pais: " + pais + "\n";
+    }
 }
+
